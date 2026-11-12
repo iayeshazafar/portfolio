@@ -1,0 +1,233 @@
+/* ==========================================================
+   SHARED UTILITIES — NEON GLOW THEME
+   Loaded on every page (index, blog, post, journey) AFTER the
+   page's own stylesheet. Covers: custom scrollbar, sliding
+   nav-tab indicator, mobile menu, back-to-top button, and scroll-reveal
+   animation classes.
+   ========================================================== */
+
+/* ---------- Custom Scrollbar ---------- */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-glow, rgba(56, 189, 248, 0.4)) var(--bg-primary, #0b0f17);
+}
+
+::-webkit-scrollbar { 
+  width: 10px; 
+  height: 10px; 
+}
+
+::-webkit-scrollbar-track { 
+  background: var(--bg-primary, #0b0f17); 
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle, rgba(126, 167, 216, 0.2));
+  border-radius: 10px;
+  border: 2px solid var(--bg-primary, #0b0f17);
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover { 
+  background: var(--accent-cyan, #38bdf8); 
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+}
+
+/* ---------- Sliding Nav Indicator ---------- */
+.tabbar { 
+  position: relative; 
+}
+
+.nav-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent-cyan, #38bdf8);
+  border-radius: 2px 2px 0 0;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.8), 0 0 4px var(--accent-teal, #2dd4bf);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  will-change: transform, width;
+}
+
+/* Stop doubling static border underlines on active tabs */
+.tab.active,
+.nav-link.active { 
+  border-bottom-color: transparent; 
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-indicator { transition: none; }
+}
+
+/* ---------- Mobile Hamburger Nav ---------- */
+.tabbar { 
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+}
+
+.tabbar::-webkit-scrollbar { 
+  display: none; 
+}
+
+.mobile-nav-toggle {
+  display: none; /* Shown on mobile screens */
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary, #9ba3af);
+  background: rgba(18, 24, 36, 0.6);
+  border: 1px solid var(--border-subtle, rgba(126, 167, 216, 0.15));
+  border-radius: 8px;
+  margin-left: auto;
+  flex-shrink: 0;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.mobile-nav-toggle:hover { 
+  color: var(--accent-cyan, #38bdf8); 
+  border-color: var(--accent-cyan, #38bdf8);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+}
+
+.mobile-nav-toggle svg { width: 22px; height: 22px; }
+.mobile-nav-toggle .icon-close { display: none; }
+.mobile-nav-toggle.open .icon-menu { display: none; }
+.mobile-nav-toggle.open .icon-close { display: block; }
+
+.mobile-nav-panel {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(18, 24, 36, 0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-glow, rgba(126, 167, 216, 0.3));
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(56, 189, 248, 0.1);
+  padding: 10px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  z-index: 99;
+}
+
+.mobile-nav-panel.open {
+  max-height: 420px;
+  opacity: 1;
+}
+
+.mobile-nav-link {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.9rem;
+  color: var(--text-secondary, #9ba3af);
+  padding: 12px 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid transparent;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.mobile-nav-link:hover { 
+  background: rgba(56, 189, 248, 0.05); 
+  color: var(--text-primary, #f3f6fb); 
+  border-color: rgba(56, 189, 248, 0.2);
+}
+
+.mobile-nav-link.active { 
+  background: rgba(56, 189, 248, 0.1); 
+  color: var(--accent-cyan, #38bdf8); 
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.mobile-nav-link .ext { 
+  color: var(--text-muted, #5c6270); 
+  font-size: 0.78rem; 
+}
+
+.mobile-nav-link.active .ext { 
+  color: var(--accent-teal, #2dd4bf); 
+  opacity: 0.8; 
+}
+
+@media (max-width: 640px) {
+  .tabbar .tab,
+  .nav-links { display: none; }
+  .tabbar-dots { padding-right: 0; border-right: none; margin-right: 0; }
+  .nav-indicator { display: none; }
+  .tabbar-wrap::after { display: none; }
+  .mobile-nav-toggle { display: flex; }
+  .mobile-nav-panel { display: flex; }
+}
+
+/* ---------- Floating Back-To-Top Button ---------- */
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 900;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-surface, #121824);
+  border: 1px solid var(--border-subtle, rgba(126, 167, 216, 0.2));
+  color: var(--text-secondary, #9ba3af);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(12px) scale(0.9);
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  border-color: var(--accent-cyan, #38bdf8);
+  color: var(--accent-cyan, #38bdf8);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+  transform: translateY(-3px) scale(1.05);
+}
+
+.back-to-top svg { width: 18px; height: 18px; }
+
+@media (max-width: 480px) {
+  .back-to-top { left: 16px; bottom: 16px; }
+}
+
+/* ---------- Scroll-Reveal Animations ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { 
+    opacity: 1; 
+    transform: none; 
+    transition: none; 
+  }
+}

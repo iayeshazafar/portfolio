@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0b0f19">
+<link rel="apple-touch-icon" sizes="180x180" href="images/icon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/icon/favicon-32x32.png"> 
+<link rel="icon" type="image/png" sizes="16x16" href="images/icon/favicon-16x16.png">
+<link rel="manifest" href="images/icon/site.webmanifest">
+<link rel="icon" href="images/icon/favicon.ico">
+<title>Blog — Ayesha Zafar</title>
+<meta name="description" content="Semester-by-semester academic journey of Ayesha Zafar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/blog.css">
+<link rel="stylesheet" href="css/utilities.css">
+</head>
+<body>
+
+<!--  NAVBAR -->
+
+<header class="nav-container">
+  <nav class="nav-bar" id="floatingNav">
+    <a href="index.html#about" class="nav-brand">
+      <span class="nav-brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+      </span>
+      <span class="nav-brand-text">Ayesha.</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#home" class="nav-link">Home</a></li>
+      <li><a href="index.html#skills" class="nav-link">Skills</a></li>
+      <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+      <li><a href="blog.html" class="nav-link active">Blog</a></li>
+      <li><a href="journey.html" class="nav-link ">Journey</a></li>
+      <li><a href="index.html#contact" class="nav-link ">Contact</a></li>
+    </ul>
+      <div class="nav-underline" id="navUnderline"></div>
+    </ul>
+    <div class="nav-action">
+      <a href="index.html#contact" class="pill">
+        <span class="pulse-dot"></span>
+        <span>Available for Work</span>
+      </a>
+    </div>
+  </nav>
+</header>
+
+<!-- MAIN CONTAINER -->
+<main class="container">
+
+  <!-- Page Header -->
+  <div class="page-head">
+    <p class="eyebrow">Blog</p>
+    <h1 class="page-title">Writing &amp; Notes</h1>
+    <p class="page-sub">Thoughts on web development, the projects I'm building, and things I learn along the way.</p>
+  </div>
+
+  <!-- Dynamic Blog Cards Grid -->
+  <div class="blog-grid" id="blogGrid"></div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">© 2026 Ayesha Zafar. All rights reserved.</div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="js/utilities.js"></script>
+<script src="data/blogs-data.js"></script>
+<script src="js/blog.js"></script>
+
+</body>
+</html>
